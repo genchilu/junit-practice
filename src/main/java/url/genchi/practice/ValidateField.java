@@ -74,7 +74,7 @@ public class ValidateField {
 
     final private static Pattern localIdNumberPat = Pattern.compile("^(?i)[a-hj-z][1-2][0-9]{8}$");
     final private static Pattern foreignIdNumberPat = Pattern.compile("^(?i)[i][0-9]{9}$");
-    public static boolean vaildIDnumber(String idNumber) {
+    public static boolean validateIdNumber(String idNumber) {
         if(idNumber == null) {
             return false;
         }
