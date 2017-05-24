@@ -31,15 +31,18 @@ public class TestValidateFieldIP {
         {"10.254.0.1", true},
         {"117.113.11.11", true},
         {"010A010A010A010", false},
-        {"010.010.010.010", false}
+        {"", false},
+        {" ", false},
+        {null, false}
     });
   }
   @Parameter(0)
-  public String ip;
+  public String testIp;
   @Parameter(1)
-  public boolean valid;
+  public boolean exceptVal;
   @Test
-  public  void Test() {
-    assertEquals(valid, ValidateField.validateIP(ip));
+  public void Test() throws Exception {
+    boolean actualResult = ValidateField.validateIP(testIp);
+    assertEquals(exceptVal, actualResult);
   }
 }

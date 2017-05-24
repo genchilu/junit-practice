@@ -25,7 +25,9 @@ public class TestValidateFieldMail {
         {"genchi.-lu@104.com.99", false},
         {"genchi.lu@104.abc.99.com", false},
         {"genchi.lu@104_.99.com", false},
-        {"Genchi.lu@104_.99.com", false}
+        {"Genchi.lu@104_.99.com", false},
+        {"Genchi.l u@104_.99.com", false},
+        {null, false}
     });
   }
   @Parameter(0)

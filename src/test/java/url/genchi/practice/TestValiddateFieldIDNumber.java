@@ -24,7 +24,8 @@ public class TestValiddateFieldIDNumber {
         {"Q123456789", false},
         {"M123456789", true},
         {"A234567820", true},
-        {"A368829966", false}
+        {"A368829966", false},
+        {null, false}
     });
   }
   @Parameter(0)

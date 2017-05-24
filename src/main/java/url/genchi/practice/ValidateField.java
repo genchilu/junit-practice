@@ -1,20 +1,21 @@
 package url.genchi.practice;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.Pattern;
 
 public class ValidateField {
 
-    final private static Pattern ipWhilePat = Pattern.compile(
+    final private static Pattern ipWhitePat = Pattern.compile(
         "^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$");
     final private static Pattern ipBlackPat = Pattern.compile(
         "^(?:(?:127|172.16|0|255|169|224|192.168).).*");
     public static boolean validateIP(String ip) {
-        if (!ipWhilePat.matcher(ip).matches() || ipBlackPat.matcher(ip).matches()) {
+        if(ip == null) {
             return false;
         }
-        return true;
+        boolean passWhite = ipWhitePat.matcher(ip).matches();
+        boolean passBlack = !ipBlackPat.matcher(ip).matches();
+        return (passWhite && passBlack);
     }
 
     //下面的 pattern 不能 match xxx@gmail.com
@@ -23,15 +24,16 @@ public class ValidateField {
     final private static Pattern mailBlackPat = Pattern.compile(
         ".*(?:-\\.|\\.-).*");
     public static boolean validateMail(String mail) {
-        if(!mail.startsWith(mail.toLowerCase())
-            || !mailWhilePat.matcher(mail).matches()
-            || mailBlackPat.matcher(mail).matches()) {
+        if(mail == null) {
             return false;
         }
-        return true;
+        boolean passLowerCase = mail.startsWith(mail.toLowerCase());
+        boolean passWhite = mailWhilePat.matcher(mail).matches();
+        boolean passBlack = !mailBlackPat.matcher(mail).matches();
+        return (passLowerCase && passWhite && passBlack);
     }
 
-    private static HashMap<Character, Integer> leter2ValidSum = new HashMap(){{
+    private static HashMap<Character, Integer> leter2ValidSum = new HashMap<Character, Integer>(){{
         put('A', 1);
         put('B', 10);
         put('C', 19);
@@ -62,29 +64,28 @@ public class ValidateField {
     private static boolean isValidLocalIdNumber(String idNumber) {
         int validSum = leter2ValidSum.get(idNumber.charAt(0));
         for(int i = 0; i<8;i++){
-            validSum += ((int)idNumber.charAt((i+1))-48)*(8-i);
+            int digit = Character.getNumericValue(idNumber.charAt(i+1));
+            validSum += digit*(8-i);
         }
-        validSum += (int)idNumber.charAt(9)-48;
-        if((validSum % 10) > 0) {
-            return false;
-        }
-        return true;
+        int lastDigit = Character.getNumericValue(idNumber.charAt(9));
+        validSum += lastDigit;
+        return ((validSum % 10) == 0);
     }
 
     final private static Pattern localIdNumberPat = Pattern.compile("^(?i)[a-hj-z][1-2][0-9]{8}$");
     final private static Pattern foreignIdNumberPat = Pattern.compile("^(?i)[i][0-9]{9}$");
     public static boolean vaildIDnumber(String idNumber) {
-        if(!idNumber.equals(idNumber.toUpperCase())) {
+        if(idNumber == null) {
             return false;
         }
-        if(!(localIdNumberPat.matcher(idNumber).matches() && isValidLocalIdNumber(idNumber)) && !foreignIdNumberPat.matcher(idNumber).matches()) {
-            return false;
-        }
-        return true;
+        boolean passUpperCase = idNumber.equals(idNumber.toUpperCase());
+        boolean passLocalIDNumberPat = localIdNumberPat.matcher(idNumber).matches() && ValidateField.isValidLocalIdNumber(idNumber);
+        boolean passForeignIDNumberPat = foreignIdNumberPat.matcher(idNumber).matches();
+        return passUpperCase && (passLocalIDNumberPat || passForeignIDNumberPat);
     }
 
     public static void main(String args[]) {
         String tmp = "A368829966";
-        System.out.println(isValidLocalIdNumber(tmp));
+        System.out.println(Character.getNumericValue('3'));
     }
 }
