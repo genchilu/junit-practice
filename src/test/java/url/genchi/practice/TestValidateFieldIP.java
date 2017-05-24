@@ -34,7 +34,7 @@ public class TestValidateFieldIP {
         {"010.010.010.010", false}
     });
   }
-  @Parameter
+  @Parameter(0)
   public String ip;
   @Parameter(1)
   public boolean valid;

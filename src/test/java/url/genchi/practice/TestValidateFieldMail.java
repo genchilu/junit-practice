@@ -28,7 +28,7 @@ public class TestValidateFieldMail {
         {"Genchi.lu@104_.99.com", false}
     });
   }
-  @Parameter
+  @Parameter(0)
   public String mail;
   @Parameter(1)
   public boolean valid;
