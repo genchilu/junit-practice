@@ -8,11 +8,10 @@ import static org.junit.Assert.assertTrue;
  * Created by genchi.lu on 2017/5/25.
  */
 public class JvmCheckerTest  {
-  private JvmRuntimeMetricDao jvmRuntimeMetricDaoMock;
 
   @Test
   public void isThreadAlmostExceed_MemExceed_ShouldTrue() throws Exception {
-    jvmRuntimeMetricDaoMock = mock(JvmRuntimeMetricDao.class);
+    JvmRuntimeMetricDao jvmRuntimeMetricDaoMock = mock(JvmRuntimeMetricDao.class);
     when(jvmRuntimeMetricDaoMock.getMaxmem()).thenReturn(1024l);
     when(jvmRuntimeMetricDaoMock.getFreemem()).thenReturn(64l);
     when(jvmRuntimeMetricDaoMock.getTotalmem()).thenReturn(768l);
@@ -25,7 +24,7 @@ public class JvmCheckerTest  {
   }
   @Test
   public void isThreadAlmostExceed_MemNotExceed_ShouldFalse() throws Exception {
-    jvmRuntimeMetricDaoMock = mock(JvmRuntimeMetricDao.class);
+    JvmRuntimeMetricDao jvmRuntimeMetricDaoMock = mock(JvmRuntimeMetricDao.class);
     when(jvmRuntimeMetricDaoMock.getMaxmem()).thenReturn(1024l);
     when(jvmRuntimeMetricDaoMock.getFreemem()).thenReturn(512l);
     when(jvmRuntimeMetricDaoMock.getTotalmem()).thenReturn(768l);
@@ -38,7 +37,7 @@ public class JvmCheckerTest  {
   }
   @Test
   public void isThreadAlmostExceed_ThreadExceed_ShouldTrue() throws Exception {
-    jvmRuntimeMetricDaoMock = mock(JvmRuntimeMetricDao.class);
+    JvmRuntimeMetricDao jvmRuntimeMetricDaoMock = mock(JvmRuntimeMetricDao.class);
     when(jvmRuntimeMetricDaoMock.getThreadCount()).thenReturn(900);
     boolean testThreadExceedResult = JvmChecker.isThreadAlmostExceed(jvmRuntimeMetricDaoMock);
     verify(jvmRuntimeMetricDaoMock, never()).getMaxmem();
@@ -49,7 +48,7 @@ public class JvmCheckerTest  {
   }
   @Test
   public void isThreadAlmostExceed_ThreadExceed_ShouldFalse() throws Exception {
-    jvmRuntimeMetricDaoMock = mock(JvmRuntimeMetricDao.class);
+    JvmRuntimeMetricDao jvmRuntimeMetricDaoMock = mock(JvmRuntimeMetricDao.class);
     when(jvmRuntimeMetricDaoMock.getThreadCount()).thenReturn(200);
     boolean testThreadExceedResult = JvmChecker.isThreadAlmostExceed(jvmRuntimeMetricDaoMock);
     verify(jvmRuntimeMetricDaoMock, never()).getMaxmem();
