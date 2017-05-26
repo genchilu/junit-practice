@@ -1,4 +1,4 @@
-package url.genchi.practice;
+package url.genchi.practice.mockito;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -8,6 +8,7 @@ import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import url.genchi.practice.junit.ValidateField;
 
 /**
  * Created by genchi.lu on 2017/5/24.

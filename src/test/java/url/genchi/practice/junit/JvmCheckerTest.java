@@ -1,8 +1,11 @@
-package url.genchi.practice;
+package url.genchi.practice.junit;
 import static org.junit.Assert.assertFalse;
 import static org.mockito.Mockito.*;
 
 import org.junit.Test;
+import url.genchi.practice.mockito.JvmChecker;
+import url.genchi.practice.mockito.JvmRuntimeMetricDao;
+
 import static org.junit.Assert.assertTrue;
 /**
  * Created by genchi.lu on 2017/5/25.

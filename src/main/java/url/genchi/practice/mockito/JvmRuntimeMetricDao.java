@@ -1,4 +1,4 @@
-package url.genchi.practice;
+package url.genchi.practice.mockito;
 
 import java.io.IOException;
 import java.lang.management.GarbageCollectorMXBean;

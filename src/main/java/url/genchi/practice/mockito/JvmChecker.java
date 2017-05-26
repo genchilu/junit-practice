@@ -1,7 +1,5 @@
-package url.genchi.practice;
+package url.genchi.practice.mockito;
 
-import java.lang.management.ManagementFactory;
-import java.lang.management.RuntimeMXBean;
 /**
  * Created by genchi.lu on 2017/5/25.
  */

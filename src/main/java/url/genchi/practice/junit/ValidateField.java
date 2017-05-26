@@ -1,4 +1,4 @@
-package url.genchi.practice;
+package url.genchi.practice.junit;
 
 import java.util.HashMap;
 import java.util.regex.Pattern;
