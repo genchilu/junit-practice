@@ -30,4 +30,7 @@ public class TodoList {
   public void setDescription(String description) {
     this.description = description;
   }
+  public boolean equals(TodoList tdl) {
+    return this.id.equals(tdl.id) && this.description.equals(tdl.description);
+  }
 }
