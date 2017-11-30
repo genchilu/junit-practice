@@ -76,31 +76,4 @@ public class TodoListDao {
     conn.commit();
     tdl = null;
   }
-  static public void main(String []args) throws IOException, ClassNotFoundException, SQLException {
-
-    Properties prop = new Properties();
-    InputStream in = TodoListDao.class.getClassLoader().getResourceAsStream("db.properties");
-    prop.load(in);
-    in.close();
-    String driver = prop.getProperty("driver").toString();
-    String jdbcurl = prop.get("jdbcurl").toString();
-    String user = prop.get("user").toString();
-    String pwd = prop.get("pwd").toString();
-    JDBCSource jdbcSource = new JDBCSource(driver, jdbcurl, user, pwd);
-    TodoListDao tdo = new TodoListDao(jdbcSource);
-//    TodoList tdl = new TodoList("hio");
-//    tdo.saveTodoList(tdl);
-//    jdbcSource.destory();
-//    TodoList tdl = tdo.findOneById("4f6be920-f0c5-4ac3-8deb-e351b96dbf8e");
-//    tdl.setDescription("hio2");
-//    tdo.updateTodolist(tdl);
-    //System.out.println(tdl.getDescription());
-//    TodoList tdl = tdo.findOneById("4f6be920-f0c5-4ac3-8deb-e351b96dbf8e");
-//    tdo.deleteTodoList(tdl);
-//    System.out.println(tdl);
-    List<TodoList> tdlList = tdo.findAll();
-    for(TodoList tdl:tdlList) {
-      System.out.println(tdl.getId());
-    }
-  }
 }
